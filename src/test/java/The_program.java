@@ -14,7 +14,7 @@ public class The_program {
             "5 + 10 = 15\n" +
             "1205 + 795 = 2000\n" +
             "Total: 2020\n";
-        StringBuilder actual = Program.readParseCalculateAndFormat();
+        StringBuilder actual = new CalculatorProgram().readParseCalculateAndFormat();
         assertEquals(expected, actual.toString());
     }
 }
