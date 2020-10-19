@@ -5,6 +5,10 @@ import java.nio.file.Paths;
 
 public class CalculatorProgram {
 
+    private int[] subtotals;
+    private int[][] operations;
+    private int total;
+
     static StringBuilder formatReport(int[][] operations, int[] subtotals, int total) {
         StringBuilder resultBuilder = new StringBuilder();
         for (int i = 0; i < operations.length; i++) {
@@ -51,11 +55,11 @@ public class CalculatorProgram {
 
     public StringBuilder readParseCalculateAndFormat() throws IOException {
         String data = readData();
-        int[][] operations = parseOperations(data);
+        operations = parseOperations(data);
 
         // Prepare total
-        int total = 0;
-        int[] subtotals = new int[operations.length];
+        total = 0;
+        subtotals = new int[operations.length];
         for (int i = 0; i < operations.length; i++) {
             subtotals[i] = operations[i][0] + operations[i][1];
             // Aggregate grand total
