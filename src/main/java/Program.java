@@ -13,16 +13,20 @@ public class Program {
         String data = readData();
         int[][] operations = parseOperations(data);
 
-        StringBuilder resultBuilder = new StringBuilder();
         // Prepare total
         int total = 0;
+        int[] subtotals = new int[operations.length];
         for(int i = 0; i<operations.length; i++) {
+            subtotals[i] = operations[i][0] + operations[i][1];
             // Aggregate grand total
-            total += operations[i][0] + operations[i][1];
+            total += subtotals[i];
+        }
+        StringBuilder resultBuilder = new StringBuilder();
+        for(int i = 0; i<operations.length; i++) {
             // Print first part of calculation
             resultBuilder.append(operations[i][0] + " + " + operations[i][1]);
             // Print total
-            resultBuilder.append(" = " + (operations[i][0] + operations[i][1]) + "\n");
+            resultBuilder.append(" = " + subtotals[i] + "\n");
         }
         // Print grand total
         resultBuilder.append("Total: " + total + "\n");
