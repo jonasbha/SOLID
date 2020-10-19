@@ -4,6 +4,12 @@ import java.util.Arrays;
 
 public class Program {
     public static void main(String[] args) throws IOException {
+        StringBuilder resultBuilder = readParseCalculateAndFormat();
+
+        System.out.println(resultBuilder.toString());
+    }
+
+    public static StringBuilder readParseCalculateAndFormat() throws IOException {
         // Read data from file at user.dir/data/additions.csv
         Path path = Paths.get(System.getProperty("user.dir"), "data", "additions.csv");
         byte[] encoded = Files.readAllBytes(path);
@@ -35,7 +41,6 @@ public class Program {
         }
         // Print grand total
         resultBuilder.append("Total: " + total + "\n");
-
-        System.out.println(resultBuilder.toString());
+        return resultBuilder;
     }
 }
