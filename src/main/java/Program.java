@@ -12,6 +12,9 @@ public class Program {
         String[] lines = data.split("\n");
         // Prepare total
         int total = 0;
+
+        StringBuilder resultBuilder = new StringBuilder();
+
         // Iterate lines
         for(int i = 0; i<lines.length; i++) {
             // Skip first line
@@ -20,17 +23,19 @@ public class Program {
             }
             // Split line on comma delimiter
             String[] columns = lines[i].split(",");
-            // Print first part of calculation
-            System.out.print(columns[0] + " + " + columns[1]);
             // Parse integers
             int x = Integer.valueOf(columns[0]);
             int y = Integer.valueOf(columns[1]);
-            // Print total
-            System.out.println(" = " + (x + y));
             // Aggregate grand total
             total += x + y;
+            // Print first part of calculation
+            resultBuilder.append(columns[0] + " + " + columns[1]);
+            // Print total
+            resultBuilder.append(" = " + (x + y) + "\n");
         }
         // Print grand total
-        System.out.println("Total: " + total);
+        resultBuilder.append("Total: " + total + "\n");
+
+        System.out.println(resultBuilder.toString());
     }
 }
