@@ -10,10 +10,7 @@ public class Program {
     }
 
     public static StringBuilder readParseCalculateAndFormat() throws IOException {
-        // Read data from file at user.dir/data/additions.csv
-        Path path = Paths.get(System.getProperty("user.dir"), "data", "additions.csv");
-        byte[] encoded = Files.readAllBytes(path);
-        String data = new String(encoded, "UTF-8");
+        String data = readData();
         // Split data at unix line specifier
         String[] lines = data.split("\n");
         // Prepare total
@@ -42,5 +39,13 @@ public class Program {
         // Print grand total
         resultBuilder.append("Total: " + total + "\n");
         return resultBuilder;
+    }
+
+    private static String readData() throws IOException {
+        // Read data from file at user.dir/data/additions.csv
+        Path path = Paths.get(System.getProperty("user.dir"), "data", "additions.csv");
+        byte[] encoded = Files.readAllBytes(path);
+        String data = new String(encoded, "UTF-8");
+        return data;
     }
 }
