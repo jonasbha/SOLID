@@ -21,8 +21,13 @@ public class Program {
             // Aggregate grand total
             total += subtotals[i];
         }
+        
+        return formatReport(operations, subtotals, total);
+    }
+
+    private static StringBuilder formatReport(int[][] operations, int[] subtotals, int total) {
         StringBuilder resultBuilder = new StringBuilder();
-        for(int i = 0; i<operations.length; i++) {
+        for(int i = 0; i< operations.length; i++) {
             // Print first part of calculation
             resultBuilder.append(operations[i][0] + " + " + operations[i][1]);
             // Print total
