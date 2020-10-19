@@ -11,6 +11,25 @@ public class Program {
 
     public static StringBuilder readParseCalculateAndFormat() throws IOException {
         String data = readData();
+        int[][] operations = parseOperations(data);
+
+        StringBuilder resultBuilder = new StringBuilder();
+        // Prepare total
+        int total = 0;
+        for(int i = 0; i<operations.length; i++) {
+            // Aggregate grand total
+            total += operations[i][0] + operations[i][1];
+            // Print first part of calculation
+            resultBuilder.append(operations[i][0] + " + " + operations[i][1]);
+            // Print total
+            resultBuilder.append(" = " + (operations[i][0] + operations[i][1]) + "\n");
+        }
+        // Print grand total
+        resultBuilder.append("Total: " + total + "\n");
+        return resultBuilder;
+    }
+
+    private static int[][] parseOperations(String data) {
         // Split data at unix line specifier
         String[] lines = data.split("\n");
 
@@ -30,21 +49,7 @@ public class Program {
 
             operations[i - 1] = new int[]{x, y};
         }
-
-        StringBuilder resultBuilder = new StringBuilder();
-        // Prepare total
-        int total = 0;
-        for(int i = 0; i<operations.length; i++) {
-            // Aggregate grand total
-            total += operations[i][0] + operations[i][1];
-            // Print first part of calculation
-            resultBuilder.append(operations[i][0] + " + " + operations[i][1]);
-            // Print total
-            resultBuilder.append(" = " + (operations[i][0] + operations[i][1]) + "\n");
-        }
-        // Print grand total
-        resultBuilder.append("Total: " + total + "\n");
-        return resultBuilder;
+        return operations;
     }
 
     private static String readData() throws IOException {
