@@ -13,10 +13,8 @@ public class Program {
         String data = readData();
         // Split data at unix line specifier
         String[] lines = data.split("\n");
-        // Prepare total
-        int total = 0;
 
-        StringBuilder resultBuilder = new StringBuilder();
+        int[][] operations = new int[lines.length - 1][];
 
         // Iterate lines
         for(int i = 0; i<lines.length; i++) {
@@ -29,12 +27,20 @@ public class Program {
             // Parse integers
             int x = Integer.valueOf(columns[0]);
             int y = Integer.valueOf(columns[1]);
+
+            operations[i - 1] = new int[]{x, y};
+        }
+
+        StringBuilder resultBuilder = new StringBuilder();
+        // Prepare total
+        int total = 0;
+        for(int i = 0; i<operations.length; i++) {
             // Aggregate grand total
-            total += x + y;
+            total += operations[i][0] + operations[i][1];
             // Print first part of calculation
-            resultBuilder.append(columns[0] + " + " + columns[1]);
+            resultBuilder.append(operations[i][0] + " + " + operations[i][1]);
             // Print total
-            resultBuilder.append(" = " + (x + y) + "\n");
+            resultBuilder.append(" = " + (operations[i][0] + operations[i][1]) + "\n");
         }
         // Print grand total
         resultBuilder.append("Total: " + total + "\n");
