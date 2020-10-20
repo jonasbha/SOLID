@@ -1,51 +1,19 @@
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class CalculatorProgram {
 
+    private final ExpressionReader expressionReader = new ExpressionReader();
+    private final ExpressionParser expressionParser = new ExpressionParser();
     private int[] subtotals;
     private int[][] operations;
     private int total;
 
     public StringBuilder readParseCalculateAndFormat() throws IOException {
-        String data = readData();
-        operations = parseOperations(data);
+        String data = expressionReader.readData();
+        operations = expressionParser.parseOperations(data);
 
         calculate();
         return formatReport();
-    }
-
-    String readData() throws IOException {
-        // Read data from file at user.dir/data/additions.csv
-        Path path = Paths.get(System.getProperty("user.dir"), "data", "additions.csv");
-        byte[] encoded = Files.readAllBytes(path);
-        String data = new String(encoded, "UTF-8");
-        return data;
-    }
-
-    int[][] parseOperations(String data) {
-        // Split data at unix line specifier
-        String[] lines = data.split("\n");
-
-        int[][] operations = new int[lines.length - 1][];
-
-        // Iterate lines
-        for (int i = 0; i < lines.length; i++) {
-            // Skip first line
-            if (lines[i].startsWith("X")) {
-                continue;
-            }
-            // Split line on comma delimiter
-            String[] columns = lines[i].split(",");
-            // Parse integers
-            int x = Integer.valueOf(columns[0]);
-            int y = Integer.valueOf(columns[1]);
-
-            operations[i - 1] = new int[]{x, y};
-        }
-        return operations;
     }
 
     StringBuilder formatReport() {
