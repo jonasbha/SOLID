@@ -51,24 +51,31 @@ public class CalculatorProgram {
     StringBuilder formatReport() {
         StringBuilder resultBuilder = new StringBuilder();
         for (int i = 0; i < operations.length; i++) {
-            // Print first part of calculation
-            resultBuilder.append(operations[i][0] + " + " + operations[i][1]);
-            // Print total
+            resultBuilder.append(formatItem(operations[i]));
             resultBuilder.append(" = " + subtotals[i] + "\n");
         }
-        // Print grand total
         resultBuilder.append("Total: " + total + "\n");
         return resultBuilder;
     }
 
-    public void calculate() {
-        // Prepare total
+    protected String formatItem(int[] operation) {
+        return operation[0] + " + " + operation[1];
+    }
+
+    public final void calculate() {
         total = 0;
         subtotals = new int[operations.length];
         for (int i = 0; i < operations.length; i++) {
-            subtotals[i] = operations[i][0] + operations[i][1];
-            // Aggregate grand total
-            total += subtotals[i];
+            subtotals[i] = calculateItem(operations[i]);
+            total = aggregateTotal(total, subtotals[i]);
         }
+    }
+
+    protected int aggregateTotal(int total, int subtotal) {
+        return total + subtotal;
+    }
+
+    protected int calculateItem(int[] operation) {
+        return operation[0] + operation[1];
     }
 }
