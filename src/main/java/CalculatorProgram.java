@@ -8,9 +8,9 @@ public class CalculatorProgram {
     private int[][] operations;
     private int total;
 
-    public CalculatorProgram() {
-        expressionReader = new ExpressionReader();
-        expressionParser = new ExpressionParser();
+    public CalculatorProgram(ExpressionReader expressionReader, ExpressionParser expressionParser) {
+        this.expressionReader = expressionReader;
+        this.expressionParser = expressionParser;
     }
 
     public StringBuilder readParseCalculateAndFormat() throws IOException {
