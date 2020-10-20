@@ -58,17 +58,17 @@ public class CalculatorProgram {
         return resultBuilder;
     }
 
-    protected String formatItem(int[] operation) {
-        return operation[0] + " + " + operation[1];
-    }
-
-    public final void calculate() {
+    final void calculate() {
         total = 0;
         subtotals = new int[operations.length];
         for (int i = 0; i < operations.length; i++) {
             subtotals[i] = calculateItem(operations[i]);
             total = aggregateTotal(total, subtotals[i]);
         }
+    }
+
+    protected String formatItem(int[] operation) {
+        return operation[0] + " + " + operation[1];
     }
 
     protected int aggregateTotal(int total, int subtotal) {
