@@ -2,11 +2,16 @@ import java.io.IOException;
 
 public class CalculatorProgram {
 
-    private final ExpressionReader expressionReader = new ExpressionReader();
-    private final ExpressionParser expressionParser = new ExpressionParser();
+    private final ExpressionReader expressionReader;
+    private final ExpressionParser expressionParser;
     private int[] subtotals;
     private int[][] operations;
     private int total;
+
+    public CalculatorProgram() {
+        expressionReader = new ExpressionReader();
+        expressionParser = new ExpressionParser();
+    }
 
     public StringBuilder readParseCalculateAndFormat() throws IOException {
         String data = expressionReader.readData();
