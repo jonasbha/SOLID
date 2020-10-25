@@ -13,5 +13,5 @@ public class AggregateExpression {
                 .reduce(0, accumulator);
     }
 
-    
+
 }

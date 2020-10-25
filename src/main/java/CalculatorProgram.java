@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.function.BinaryOperator;
 
 import static java.util.Arrays.stream;
 
@@ -7,12 +6,13 @@ public class CalculatorProgram {
 
     private final ExpressionReader expressionReader;
     private final ExpressionParser expressionParser;
-    private final AggregateExpression aggregateExpression = new AggregateExpression();
+    private final AggregateExpression aggregateExpression;
     private BinaryExpression[] operations;
 
-    public CalculatorProgram(ExpressionReader expressionReader, ExpressionParser expressionParser) {
+    public CalculatorProgram(ExpressionReader expressionReader, ExpressionParser expressionParser, AggregateExpression aggregateExpression) {
         this.expressionReader = expressionReader;
         this.expressionParser = expressionParser;
+        this.aggregateExpression = aggregateExpression;
     }
 
     public StringBuilder readParseCalculateAndFormat() throws IOException {

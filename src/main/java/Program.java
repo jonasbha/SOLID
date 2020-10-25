@@ -12,7 +12,7 @@ public class Program {
         CalculatorProgram program =
             shouldUseSubtraction(args)
             ? new SubtractionProgram(reader, parser)
-            : new CalculatorProgram(reader, parser);
+            : new CalculatorProgram(reader, parser, new AggregateExpression());
 
         StringBuilder resultBuilder = program.readParseCalculateAndFormat();
 
