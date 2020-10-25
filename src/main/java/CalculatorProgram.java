@@ -4,7 +4,6 @@ public class CalculatorProgram {
 
     private final ExpressionReader expressionReader;
     private final ExpressionParser expressionParser;
-    private int[] subtotals;
     private BinaryExpression[] operations;
     private int total;
 
@@ -25,7 +24,7 @@ public class CalculatorProgram {
         StringBuilder resultBuilder = new StringBuilder();
         for (int i = 0; i < operations.length; i++) {
             resultBuilder.append(operations[i].toString());
-            resultBuilder.append(" = " + subtotals[i] + "\n");
+            resultBuilder.append(" = " + operations[i].calculateItem() + "\n");
         }
         resultBuilder.append("Total: " + total + "\n");
         return resultBuilder;
@@ -33,10 +32,8 @@ public class CalculatorProgram {
 
     final void calculate() {
         total = 0;
-        subtotals = new int[operations.length];
         for (int i = 0; i < operations.length; i++) {
-            subtotals[i] = operations[i].calculateItem();
-            total = aggregateTotal(total, subtotals[i]);
+            total = aggregateTotal(total, operations[i].calculateItem());
         }
     }
 
