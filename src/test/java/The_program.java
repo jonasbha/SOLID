@@ -1,7 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -14,12 +12,12 @@ public class The_program {
             "5 + 10 = 15\n" +
             "1205 + 795 = 2000\n" +
             "Total: 2020\n";
-        String actual = new CalculatorProgram(
+        String actual = new CalculationReport(
                 new ExpressionParser(new FileSystemExpressionReader(), BinaryOperator.Add),
                 new AdditiveTotal(),
                 new AsciiFormatter()
             )
-            .readParseCalculateAndFormat()
+            .buildReport()
             .toString();
         assertEquals(expected, actual);
     }
@@ -32,12 +30,12 @@ public class The_program {
             "5 - 10 = -5\n" +
             "1205 - 795 = 410\n" +
             "Total: -404\n";
-        String actual = new CalculatorProgram(
+        String actual = new CalculationReport(
                 new ExpressionParser(new FileSystemExpressionReader(), BinaryOperator.Subtract),
                 new SubtractiveTotal(),
                 new AsciiFormatter()
             )
-            .readParseCalculateAndFormat()
+            .buildReport()
             .toString();
         assertEquals(expected, actual.toString());
     }

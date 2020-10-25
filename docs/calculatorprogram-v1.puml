@@ -1,6 +1,6 @@
 @startuml
 
-class CalculatorProgram {
+class CalculationReport {
     - int[] subtotals
     - int[][] operations
     - int total

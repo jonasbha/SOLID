@@ -1,17 +1,15 @@
-import java.io.*;
-
 public class Program {
 
     public static void main(String[] args) throws Exception {
         FileSystemExpressionReader reader = new FileSystemExpressionReader();
         AsciiFormatter formatter = new AsciiFormatter();
 
-        CalculatorProgram program =
+        CalculationReport program =
             shouldUseSubtraction(args)
-            ? new CalculatorProgram(new ExpressionParser(reader, Subtraction.class), new SubtractiveTotal(), formatter)
-            : new CalculatorProgram(new ExpressionParser(reader, Addition.class), new AdditiveTotal(), formatter);
+            ? new CalculationReport(new ExpressionParser(reader, Subtraction.class), new SubtractiveTotal(), formatter)
+            : new CalculationReport(new ExpressionParser(reader, Addition.class), new AdditiveTotal(), formatter);
 
-        StringBuilder resultBuilder = program.readParseCalculateAndFormat();
+        StringBuilder resultBuilder = program.buildReport();
 
         System.out.print(resultBuilder.toString());
     }
