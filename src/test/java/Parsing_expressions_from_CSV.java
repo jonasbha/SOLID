@@ -15,7 +15,7 @@ public class Parsing_expressions_from_CSV {
         };
 
         ExpressionParser parser = new ExpressionParser();
-        Object[] actual = parser.parseOperations(input);
+        BinaryExpression[] actual = parser.parseOperations(input);
 
         Assertions.assertArrayEquals(expected, actual);
     }
