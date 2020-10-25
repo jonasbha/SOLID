@@ -14,7 +14,7 @@ public class The_program {
             "Total: 2020\n";
         String actual = new CalculationReport(
                 new ExpressionParser(new FileSystemExpressionReader(), BinaryOperator.Add),
-                new AdditiveTotal(),
+                new Aggregation(BinaryOperator.Add),
                 new AsciiFormatter()
             )
             .buildReport()
@@ -32,7 +32,7 @@ public class The_program {
             "Total: -404\n";
         String actual = new CalculationReport(
                 new ExpressionParser(new FileSystemExpressionReader(), BinaryOperator.Subtract),
-                new SubtractiveTotal(),
+                new Aggregation(BinaryOperator.Subtract),
                 new AsciiFormatter()
             )
             .buildReport()

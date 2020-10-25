@@ -6,8 +6,8 @@ public class Program {
 
         CalculationReport program =
             shouldUseSubtraction(args)
-            ? new CalculationReport(new ExpressionParser(reader, Subtraction.class), new SubtractiveTotal(), formatter)
-            : new CalculationReport(new ExpressionParser(reader, Addition.class), new AdditiveTotal(), formatter);
+            ? new CalculationReport(new ExpressionParser(reader, Subtraction.class), new Aggregation(BinaryOperator.Subtract), formatter)
+            : new CalculationReport(new ExpressionParser(reader, Addition.class), new Aggregation(BinaryOperator.Add), formatter);
 
         StringBuilder resultBuilder = program.buildReport();
 
