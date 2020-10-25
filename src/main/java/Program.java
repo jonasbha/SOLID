@@ -2,8 +2,13 @@ import java.io.*;
 
 public class Program {
     public static void main(String[] args) throws IOException {
-        ExpressionParser parser = new ExpressionParser('+');
         ExpressionReader reader = new ExpressionReader();
+
+        ExpressionParser parser =
+            shouldUseSubtraction(args)
+            ? new ExpressionParser('-')
+            : new ExpressionParser('+');
+
         CalculatorProgram program =
             shouldUseSubtraction(args)
             ? new SubtractionProgram(reader, parser)
