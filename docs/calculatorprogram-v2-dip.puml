@@ -1,0 +1,27 @@
+@startuml
+hide empty members
+
+class CalculatorProgram {
+    - int[] subtotals
+    - int[][] operations
+    - int total
+
+    + StringBuilder readParseCalculateAndFormat() throws IOException
+    - String readData() throws IOException
+    - int[][] parseOperations(String data)
+    - StringBuilder formatReport()
+    - void calculate()
+    * String formatItem(int[] operation) 
+    * int calculateItem(int[] operation)
+    * int aggregateTotal(int total, int subtotal)
+}
+
+class SubtractionProgram {
+    * formatItem(int[] operation)
+    * int calculateItem(int[] operation)
+    * int aggregateTotal(int total, int subtotal)
+}
+
+SubtractionProgram -up-|> CalculatorProgram
+
+@enduml
