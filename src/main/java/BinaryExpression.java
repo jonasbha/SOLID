@@ -10,6 +10,6 @@ public class BinaryExpression {
     }
 
     public int calculate() {
-        return 0;
+        return operator.calculate(left, right);
     }
 }

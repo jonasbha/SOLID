@@ -1,0 +1,44 @@
+@startuml
+hide empty members
+
+class ExpressionReader {
+    + String readData() throws IOException
+}
+
+class ExpressionParser {
+    + int[][] parseOperations(String data) throws IOException
+}
+
+class CalculatorProgram {
+    - int[] subtotals
+    - int[][] operations
+    - int total
+
+    + StringBuilder readParseCalculateAndFormat() throws IOException
+    - StringBuilder formatReport()
+    - void calculate()
+    * String formatItem(int[] operation) 
+    * int calculateItem(int[] operation)
+    * int aggregateTotal(int total, int subtotal)
+}
+
+class SubtractionProgram {
+    * formatItem(int[] operation)
+    * int calculateItem(int[] operation)
+    * int aggregateTotal(int total, int subtotal)
+}
+
+class BinaryExpression {
+}
+
+class BinaryOperation {
+}
+
+CalculatorProgram ..> ExpressionParser
+ExpressionParser --> ExpressionReader
+
+SubtractionProgram -up-|> CalculatorProgram
+
+
+
+@enduml
