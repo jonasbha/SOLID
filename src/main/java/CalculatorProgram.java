@@ -49,6 +49,10 @@ public class CalculatorProgram {
     }
 
     protected int calculateItem(BinaryExpression operation) {
-        return operation.left + operation.right;
+        if (operation.operator == '+') {
+            return operation.left + operation.right;
+        } else {
+            return operation.left - operation.right;
+        }
     }
 }
