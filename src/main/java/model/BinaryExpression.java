@@ -1,4 +1,5 @@
-import java.lang.reflect.Constructor;
+package model;
+
 import java.util.Objects;
 
 public class BinaryExpression {
@@ -10,6 +11,10 @@ public class BinaryExpression {
         this.left = left;
         this.operator = operator;
         this.right = right;
+    }
+
+    public static BinaryExpression create(Integer x, BinaryOperator operator, Integer y) {
+        return new BinaryExpression(x, operator, y);
     }
 
     public static BinaryExpression create(Integer x, char operator, Integer y) {

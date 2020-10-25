@@ -1,6 +1,10 @@
+import io.ExpressionReader;
+import model.BinaryExpression;
+import model.BinaryOperator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import parsing.ExpressionParser;
 
 import java.io.IOException;
 

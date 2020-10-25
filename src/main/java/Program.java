@@ -1,13 +1,20 @@
+import formatting.AsciiFormatter;
+import io.FileSystemExpressionReader;
+import model.Addition;
+import model.BinaryOperator;
+import model.Subtraction;
+import parsing.ExpressionParser;
+
 public class Program {
 
     public static void main(String[] args) throws Exception {
         FileSystemExpressionReader reader = new FileSystemExpressionReader();
         AsciiFormatter formatter = new AsciiFormatter();
 
-        CalculationReport program =
+        AggregationReport program =
             shouldUseSubtraction(args)
-            ? new CalculationReport(new ExpressionParser(reader, Subtraction.class), new Aggregation(BinaryOperator.Subtract), formatter)
-            : new CalculationReport(new ExpressionParser(reader, Addition.class), new Aggregation(BinaryOperator.Add), formatter);
+            ? new AggregationReport(new ExpressionParser(reader, Subtraction.class), BinaryOperator.Subtract, formatter)
+            : new AggregationReport(new ExpressionParser(reader, Addition.class), BinaryOperator.Add, formatter);
 
         StringBuilder resultBuilder = program.buildReport();
 

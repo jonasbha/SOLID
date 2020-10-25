@@ -1,3 +1,5 @@
+package model;
+
 public class Subtraction extends BinaryOperator {
     public Subtraction() {
         super('-');

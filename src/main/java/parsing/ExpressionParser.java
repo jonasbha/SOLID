@@ -1,6 +1,11 @@
+package parsing;
+
+import io.ExpressionReader;
+import model.BinaryExpression;
+import model.BinaryOperator;
+
 import java.io.IOException;
 import java.util.concurrent.Callable;
-import java.util.function.Function;
 
 public class ExpressionParser {
     private final String input;
@@ -16,7 +21,7 @@ public class ExpressionParser {
         this.operatorFactory = () -> operator;
     }
 
-    BinaryExpression[] parseOperations() throws Exception {
+    public BinaryExpression[] parseOperations() throws Exception {
         // Split data at unix line specifier
         String[] lines = input.split("\n");
 
@@ -34,7 +39,7 @@ public class ExpressionParser {
             int x = Integer.valueOf(columns[0]);
             int y = Integer.valueOf(columns[1]);
 
-            operations[i - 1] = new BinaryExpression(x, operatorFactory.call(), y);
+            operations[i - 1] = BinaryExpression.create(x, operatorFactory.call(), y);
         }
         return operations;
     }

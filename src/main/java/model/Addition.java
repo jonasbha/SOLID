@@ -1,3 +1,5 @@
+package model;
+
 public class Addition extends BinaryOperator {
     public Addition() {
         super('+');

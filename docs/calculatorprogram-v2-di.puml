@@ -1,6 +1,6 @@
 @startuml
 
-class CalculationReport {
+class AggregationReport {
     - int[] subtotals
     - int[][] operations
     - int total

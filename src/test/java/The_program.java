@@ -1,4 +1,8 @@
+import formatting.AsciiFormatter;
+import io.FileSystemExpressionReader;
+import model.BinaryOperator;
 import org.junit.jupiter.api.Test;
+import parsing.ExpressionParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -12,9 +16,9 @@ public class The_program {
             "5 + 10 = 15\n" +
             "1205 + 795 = 2000\n" +
             "Total: 2020\n";
-        String actual = new CalculationReport(
+        String actual = new AggregationReport(
                 new ExpressionParser(new FileSystemExpressionReader(), BinaryOperator.Add),
-                new Aggregation(BinaryOperator.Add),
+                BinaryOperator.Add,
                 new AsciiFormatter()
             )
             .buildReport()
@@ -30,9 +34,9 @@ public class The_program {
             "5 - 10 = -5\n" +
             "1205 - 795 = 410\n" +
             "Total: -404\n";
-        String actual = new CalculationReport(
+        String actual = new AggregationReport(
                 new ExpressionParser(new FileSystemExpressionReader(), BinaryOperator.Subtract),
-                new Aggregation(BinaryOperator.Subtract),
+                BinaryOperator.Subtract,
                 new AsciiFormatter()
             )
             .buildReport()

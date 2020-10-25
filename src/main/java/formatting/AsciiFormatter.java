@@ -1,8 +1,12 @@
+package formatting;
+
+import model.Aggregation;
+
 public class AsciiFormatter {
     public AsciiFormatter() {
     }
 
-    StringBuilder formatReport(Aggregation aggregation) {
+    public StringBuilder formatReport(Aggregation aggregation) {
         StringBuilder resultBuilder = new StringBuilder();
         for (int i = 0; i < aggregation.operations.length; i++) {
             resultBuilder.append(aggregation.operations[i].toString());
