@@ -10,6 +10,12 @@ public class ExpressionParser {
         this.expressionFactory = expressionFactory;
     }
 
+    public ExpressionParser(ExpressionReader reader, Class expressionType) throws Exception {
+        this.input = reader.readData();
+
+        expressionFactory = x -> y -> BinaryExpression.createExpression(expressionType, x, y);
+    }
+
     BinaryExpression[] parseOperations() {
         // Split data at unix line specifier
         String[] lines = input.split("\n");

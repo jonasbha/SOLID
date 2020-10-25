@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class The_program {
     @Test
-    public void sums_numbers_and_grand_total() throws IOException {
+    public void sums_numbers_and_grand_total() throws Exception {
         String expected =
             "1 + 1 = 2\n" +
             "1 + 2 = 3\n" +
@@ -15,7 +15,7 @@ public class The_program {
             "1205 + 795 = 2000\n" +
             "Total: 2020\n";
         String actual = new CalculatorProgram(
-                new ExpressionParser(new FileSystemExpressionReader(), BinaryExpression.addition),
+                new ExpressionParser(new FileSystemExpressionReader(), Addition.class),
                 new AdditiveTotal(),
                 new AsciiFormatter()
             )
@@ -25,7 +25,7 @@ public class The_program {
     }
 
     @Test
-    public void subtracts_numbers() throws IOException {
+    public void subtracts_numbers() throws Exception {
         String expected =
             "1 - 1 = 0\n" +
             "1 - 2 = -1\n" +
@@ -33,7 +33,7 @@ public class The_program {
             "1205 - 795 = 410\n" +
             "Total: -404\n";
         String actual = new CalculatorProgram(
-                new ExpressionParser(new FileSystemExpressionReader(), BinaryExpression.subtraction),
+                new ExpressionParser(new FileSystemExpressionReader(), Subtraction.class),
                 new SubtractiveTotal(),
                 new AsciiFormatter()
             )

@@ -8,15 +8,16 @@ import java.io.IOException;
 
 public class Parsing_expressions_from_CSV {
 
-    @Test
-    public void builds_list_of_binary_expressions() throws IOException {
+    @ParameterizedTest
+    @ValueSource(classes={Addition.class, Subtraction.class})
+    public void builds_list_of_binary_expressions(Class expressionType) throws Exception {
         final String input =
             "X,Y\n" +
             "1,1\n" +
             "1,3\n";
         final BinaryExpression[] expected = new BinaryExpression[]{
-            BinaryExpression.addition.apply(1).apply(1),
-            BinaryExpression.addition.apply(1).apply(3)
+            BinaryExpression.createExpression(expressionType, 1, 1),
+            BinaryExpression.createExpression(expressionType, 1, 3)
         };
         ExpressionReader fakeReader = new ExpressionReader() {
             @Override
@@ -25,7 +26,7 @@ public class Parsing_expressions_from_CSV {
             }
         };
 
-        ExpressionParser parser = new ExpressionParser(fakeReader, BinaryExpression.addition);
+        ExpressionParser parser = new ExpressionParser(fakeReader, expressionType);
         BinaryExpression[] actual = parser.parseOperations();
 
         Assertions.assertArrayEquals(expected, actual);

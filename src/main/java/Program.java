@@ -2,14 +2,14 @@ import java.io.*;
 
 public class Program {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         FileSystemExpressionReader reader = new FileSystemExpressionReader();
         AsciiFormatter formatter = new AsciiFormatter();
 
         CalculatorProgram program =
             shouldUseSubtraction(args)
-            ? new CalculatorProgram(new ExpressionParser(reader, BinaryExpression.subtraction), new SubtractiveTotal(), formatter)
-            : new CalculatorProgram(new ExpressionParser(reader, BinaryExpression.addition), new AdditiveTotal(), formatter);
+            ? new CalculatorProgram(new ExpressionParser(reader, Subtraction.class), new SubtractiveTotal(), formatter)
+            : new CalculatorProgram(new ExpressionParser(reader, Addition.class), new AdditiveTotal(), formatter);
 
         StringBuilder resultBuilder = program.readParseCalculateAndFormat();
 
