@@ -11,6 +11,14 @@ public class BinaryExpression {
         this.right = right;
     }
 
+    public int calculateItem() {
+        if (operator == '+') {
+            return left + right;
+        } else {
+            return left - right;
+        }
+    }
+
     @Override
     public String toString() {
         return this.left + " " + this.operator + " " + this.right;

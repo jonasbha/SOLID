@@ -35,7 +35,7 @@ public class CalculatorProgram {
         total = 0;
         subtotals = new int[operations.length];
         for (int i = 0; i < operations.length; i++) {
-            subtotals[i] = calculateItem(operations[i]);
+            subtotals[i] = operations[i].calculateItem();
             total = aggregateTotal(total, subtotals[i]);
         }
     }
@@ -48,11 +48,4 @@ public class CalculatorProgram {
         return total + subtotal;
     }
 
-    protected int calculateItem(BinaryExpression operation) {
-        if (operation.operator == '+') {
-            return operation.left + operation.right;
-        } else {
-            return operation.left - operation.right;
-        }
-    }
 }
