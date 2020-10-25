@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.util.concurrent.Callable;
+import java.util.function.Function;
 
 public class ExpressionParser {
     private final char operator;
@@ -27,7 +29,8 @@ public class ExpressionParser {
             int x = Integer.valueOf(columns[0]);
             int y = Integer.valueOf(columns[1]);
 
-            operations[i - 1] = new BinaryExpression(x, operator, y);
+            Function<Integer, Function<Integer, BinaryExpression>> factory = a -> b -> new BinaryExpression(a, operator, b);
+            operations[i - 1] = factory.apply(x).apply(y);
         }
         return operations;
     }
