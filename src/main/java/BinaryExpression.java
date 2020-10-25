@@ -16,10 +16,11 @@ public class BinaryExpression {
     }
 
     public int calculateItem() {
-        if (operator == '+') {
-            return left + right;
-        } else {
-            return left - right;
+        switch (operator) {
+            case '+':
+                return left + right;
+            default:
+                return left - right;
         }
     }
 
