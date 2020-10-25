@@ -1,14 +1,13 @@
 import java.io.IOException;
-import java.util.concurrent.Callable;
 import java.util.function.Function;
 
 public class ExpressionParser {
-    private final char operator;
     private final String input;
+    private Function<Integer, Function<Integer, BinaryExpression>> expressionFactory;
 
-    public ExpressionParser(char operator, ExpressionReader reader) throws IOException {
-        this.operator = operator;
+    public ExpressionParser(ExpressionReader reader, Function<Integer, Function<Integer, BinaryExpression>> expressionFactory) throws IOException {
         this.input = reader.readData();
+        this.expressionFactory = expressionFactory;
     }
 
     BinaryExpression[] parseOperations() {
@@ -29,8 +28,7 @@ public class ExpressionParser {
             int x = Integer.valueOf(columns[0]);
             int y = Integer.valueOf(columns[1]);
 
-            Function<Integer, Function<Integer, BinaryExpression>> factory = a -> b -> new BinaryExpression(a, operator, b);
-            operations[i - 1] = factory.apply(x).apply(y);
+            operations[i - 1] = expressionFactory.apply(x).apply(y);
         }
         return operations;
     }
