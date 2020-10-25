@@ -1,11 +1,15 @@
 import java.util.Objects;
+import java.util.function.Function;
 
 public class BinaryExpression {
+    public static final Function<Integer, Function<Integer, BinaryExpression>> subtraction = a -> b -> new BinaryExpression(a, '-', b);
+    public static final Function<Integer, Function<Integer, BinaryExpression>> addition = a -> b -> new BinaryExpression(a, '+', b);
+
     public final int left;
     protected final char operator;
     public final int right;
 
-    public BinaryExpression(int left, char operator, int right) {
+    private BinaryExpression(int left, char operator, int right) {
         this.left = left;
         this.operator = operator;
         this.right = right;
