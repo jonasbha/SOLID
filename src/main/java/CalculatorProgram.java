@@ -41,6 +41,6 @@ public class CalculatorProgram {
     }
 
     protected String formatItem(BinaryExpression operation) {
-        return operation.left + " + " + operation.right;
+        return operation.left + " " + operation.operator.symbol + " " + operation.right;
     }
 }

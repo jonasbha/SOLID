@@ -1,8 +1,12 @@
 import java.util.Objects;
 
 public abstract class BinaryOperator {
-    private char symbol;
+    public char symbol;
     public abstract int calculate(int left, int right);
+
+    protected BinaryOperator(char symbol) {
+        this.symbol = symbol;
+    }
 
     @Override
     public boolean equals(Object o) {

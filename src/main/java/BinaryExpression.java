@@ -2,7 +2,7 @@ import java.util.Objects;
 
 public class BinaryExpression {
     public final int left;
-    private final BinaryOperator operator;
+    public final BinaryOperator operator;
     public final int right;
 
     public BinaryExpression(int left, BinaryOperator operator, int right) {
