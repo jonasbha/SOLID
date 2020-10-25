@@ -6,7 +6,7 @@ public class Program {
 
         CalculatorProgram program =
             shouldUseSubtraction(args)
-            ? new SubtractionProgram(reader, new ExpressionParser('-'))
+            ? new CalculatorProgram(reader, new ExpressionParser('-'), new SubtractiveTotal())
             : new CalculatorProgram(reader, new ExpressionParser('+'), new AdditiveTotal());
 
         StringBuilder resultBuilder = program.readParseCalculateAndFormat();

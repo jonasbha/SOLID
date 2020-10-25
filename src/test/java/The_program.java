@@ -30,7 +30,7 @@ public class The_program {
             "1205 - 795 = 410\n" +
             "Total: -404\n";
         ExpressionParser parser = new ExpressionParser('-');
-        String actual = new SubtractionProgram(new ExpressionReader(), parser)
+        String actual = new CalculatorProgram(new ExpressionReader(), parser, new SubtractiveTotal())
             .readParseCalculateAndFormat()
             .toString();
         assertEquals(expected, actual.toString());

@@ -32,9 +32,4 @@ public class CalculatorProgram {
         resultBuilder.append("Total: " + aggregateExpression.total + "\n");
         return resultBuilder;
     }
-
-    protected int aggregateTotal(int total, int subtotal) {
-        return total + subtotal;
-    }
-
 }
