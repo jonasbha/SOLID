@@ -13,7 +13,7 @@ public class The_program {
             "5 + 10 = 15\n" +
             "1205 + 795 = 2000\n" +
             "Total: 2020\n";
-        String actual = new CalculatorProgram().readParseCalculateAndFormat().toString();
+        String actual = new CalculatorProgram(new ExpressionReader(), new ExpressionParser()).readParseCalculateAndFormat().toString();
         assertEquals(expected, actual);
     }
 

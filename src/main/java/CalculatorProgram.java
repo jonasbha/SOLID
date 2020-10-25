@@ -1,42 +1,23 @@
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class CalculatorProgram {
 
+    private final ExpressionReader expressionReader;
+    private final ExpressionParser expressionParser;
     private int total;
     private int[] subtotals;
     private int[][] operations;
 
+    public CalculatorProgram(ExpressionReader expressionReader, ExpressionParser expressionParser) {
+        this.expressionReader = expressionReader;
+        this.expressionParser = expressionParser;
+    }
+
     public StringBuilder readParseCalculateAndFormat() throws IOException {
-        String data = readData();
-        operations = parseExpressions(data);
+        String data = expressionReader.readData();
+        operations = expressionParser.parseExpressions(data);
         calculate();
         return formatReport();
-    }
-
-    String readData() throws IOException {
-        Path path = Paths.get(System.getProperty("user.dir"), "data", "additions.csv");
-        byte[] encoded = Files.readAllBytes(path);
-        String data = new String(encoded, "UTF-8");
-        return data;
-    }
-
-    int[][] parseExpressions(String data) {
-        String[] lines = data.split("\n");
-        int[][] operations = new int[lines.length - 1][];
-        for (int i = 0; i < lines.length; i++) {
-            if (lines[i].startsWith("X")) {
-                continue;
-            }
-            String[] columns = lines[i].split(",");
-            int x = Integer.valueOf(columns[0]);
-            int y = Integer.valueOf(columns[1]);
-
-            operations[i - 1] = new int[]{x, y};
-        }
-        return operations;
     }
 
     private final void calculate() {

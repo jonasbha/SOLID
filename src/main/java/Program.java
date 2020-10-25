@@ -5,7 +5,7 @@ public class Program {
         CalculatorProgram program =
             shouldUseSubtraction(args)
             ? new SubtractionProgram()
-            : new CalculatorProgram();
+            : new CalculatorProgram(new ExpressionReader(), new ExpressionParser());
 
         StringBuilder resultBuilder = program.readParseCalculateAndFormat();
 
