@@ -1,8 +1,14 @@
+import java.io.IOException;
+
 public class ExpressionParser {
-    public ExpressionParser() {
+    private final ExpressionReader expressionReader;
+
+    public ExpressionParser(ExpressionReader expressionReader) {
+        this.expressionReader = expressionReader;
     }
 
-    int[][] parseExpressions(String data) {
+    int[][] parseExpressions() throws IOException {
+        String data = expressionReader.readData();
         String[] lines = data.split("\n");
         int[][] operations = new int[lines.length - 1][];
         for (int i = 0; i < lines.length; i++) {
