@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.function.BinaryOperator;
 
 public abstract class Aggregation {
     int total;
@@ -10,7 +9,7 @@ public abstract class Aggregation {
 
     final void calculate(BinaryExpression[] operations) {
         total = Arrays.stream(operations)
-                .map(x -> x.calculateItem())
+                .map(x -> x.calculate())
                 .reduce(0, this::aggregateTotal);
         this.operations = operations;
     }

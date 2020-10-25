@@ -1,10 +1,10 @@
-public class Addition extends BinaryExpression {
-    public Addition(Integer x, Integer y) {
-        super(x, '+', y);
+public class Addition extends BinaryOperator {
+    public Addition() {
+        super('+');
     }
 
     @Override
-    public int calculateItem() {
+    public int calculate(int left, int right) {
         return left + right;
     }
 }

@@ -1,10 +1,10 @@
-public class Subtraction extends BinaryExpression {
-    public Subtraction(Integer left, Integer right) {
-        super(left, '-', right);
+public class Subtraction extends BinaryOperator {
+    public Subtraction() {
+        super('-');
     }
 
     @Override
-    public int calculateItem() {
+    public int calculate(int left, int right) {
         return left - right;
     }
 }

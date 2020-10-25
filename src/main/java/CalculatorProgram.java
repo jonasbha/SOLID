@@ -15,7 +15,7 @@ public class CalculatorProgram {
         this.formatter = formatter;
     }
 
-    public StringBuilder readParseCalculateAndFormat() throws IOException {
+    public StringBuilder readParseCalculateAndFormat() throws Exception {
         operations = expressionParser.parseOperations();
         aggregateExpression.calculate(operations);
         return formatter.formatReport(aggregateExpression);

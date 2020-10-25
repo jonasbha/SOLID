@@ -15,7 +15,7 @@ public class The_program {
             "1205 + 795 = 2000\n" +
             "Total: 2020\n";
         String actual = new CalculatorProgram(
-                new ExpressionParser(new FileSystemExpressionReader(), Addition.class),
+                new ExpressionParser(new FileSystemExpressionReader(), BinaryOperator.Add),
                 new AdditiveTotal(),
                 new AsciiFormatter()
             )
@@ -33,7 +33,7 @@ public class The_program {
             "1205 - 795 = 410\n" +
             "Total: -404\n";
         String actual = new CalculatorProgram(
-                new ExpressionParser(new FileSystemExpressionReader(), Subtraction.class),
+                new ExpressionParser(new FileSystemExpressionReader(), BinaryOperator.Subtract),
                 new SubtractiveTotal(),
                 new AsciiFormatter()
             )

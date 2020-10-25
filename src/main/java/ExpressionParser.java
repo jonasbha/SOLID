@@ -1,22 +1,22 @@
 import java.io.IOException;
+import java.util.concurrent.Callable;
 import java.util.function.Function;
 
 public class ExpressionParser {
     private final String input;
-    private Function<Integer, Function<Integer, BinaryExpression>> expressionFactory;
-
-    public ExpressionParser(ExpressionReader reader, Function<Integer, Function<Integer, BinaryExpression>> expressionFactory) throws IOException {
-        this.input = reader.readData();
-        this.expressionFactory = expressionFactory;
-    }
+    private final Callable<BinaryOperator> operatorFactory;
 
     public ExpressionParser(ExpressionReader reader, Class expressionType) throws Exception {
         this.input = reader.readData();
-
-        expressionFactory = x -> y -> BinaryExpression.createExpression(expressionType, x, y);
+        operatorFactory = () -> (BinaryOperator) expressionType.newInstance();
     }
 
-    BinaryExpression[] parseOperations() {
+    public ExpressionParser(ExpressionReader reader, BinaryOperator operator) throws IOException {
+        this.input = reader.readData();
+        this.operatorFactory = () -> operator;
+    }
+
+    BinaryExpression[] parseOperations() throws Exception {
         // Split data at unix line specifier
         String[] lines = input.split("\n");
 
@@ -34,7 +34,7 @@ public class ExpressionParser {
             int x = Integer.valueOf(columns[0]);
             int y = Integer.valueOf(columns[1]);
 
-            operations[i - 1] = expressionFactory.apply(x).apply(y);
+            operations[i - 1] = new BinaryExpression(x, operatorFactory.call(), y);
         }
         return operations;
     }
