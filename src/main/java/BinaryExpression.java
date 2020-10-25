@@ -1,7 +1,7 @@
 public class BinaryExpression {
-    private final int left;
+    public final int left;
     private final BinaryOperator operator;
-    private final int right;
+    public final int right;
 
     public BinaryExpression(int left, BinaryOperator operator, int right) {
         this.left = left;

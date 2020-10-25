@@ -8,7 +8,7 @@ import java.io.IOException;
 public class Parsing_expressions_from_CSV {
 
     @Test
-    public void builds_list_of_binary_expressions(char operator) throws Exception {
+    public void builds_list_of_binary_expressions() throws Exception {
         final String input =
             "X,Y\n" +
             "1,1\n" +

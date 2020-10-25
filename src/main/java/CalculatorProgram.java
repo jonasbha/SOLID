@@ -5,7 +5,7 @@ public class CalculatorProgram {
     private final ExpressionParser expressionParser;
     private int total;
     private int[] subtotals;
-    private int[][] operations;
+    private BinaryExpression[] operations;
 
     public CalculatorProgram(ExpressionParser expressionParser) {
         this.expressionParser = expressionParser;
@@ -21,7 +21,7 @@ public class CalculatorProgram {
         total = 0;
         subtotals = new int[operations.length];
         for (int i = 0; i < operations.length; i++) {
-            subtotals[i] = calculateItem(operations[i]);
+            subtotals[i] = operations[i].calculate();
             total = aggregateTotal(total, subtotals[i]);
         }
     }
@@ -44,7 +44,7 @@ public class CalculatorProgram {
         return resultBuilder;
     }
 
-    protected String formatItem(int[] operation) {
-        return operation[0] + " + " + operation[1];
+    protected String formatItem(BinaryExpression operation) {
+        return operation.left + " + " + operation.right;
     }
 }

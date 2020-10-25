@@ -14,7 +14,7 @@ public class SubtractionProgram extends CalculatorProgram {
     }
 
     @Override
-    protected String formatItem(int[] operation) {
-        return operation[0] + " - " + operation[1];
+    protected String formatItem(BinaryExpression operation) {
+        return operation.left + " - " + operation.right;
     }
 }
