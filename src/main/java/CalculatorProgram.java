@@ -19,7 +19,7 @@ public class CalculatorProgram {
         String data = expressionReader.readData();
         operations = expressionParser.parseOperations(data);
 
-        aggregateExpression.calculate(this::aggregateTotal, operations);
+        aggregateExpression.calculate(operations);
         return formatReport();
     }
 

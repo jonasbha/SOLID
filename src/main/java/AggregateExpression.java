@@ -7,10 +7,10 @@ public abstract class AggregateExpression {
     public AggregateExpression() {
     }
 
-    final void calculate(BinaryOperator<Integer> accumulator, BinaryExpression[] operations) {
+    final void calculate(BinaryExpression[] operations) {
         total = Arrays.stream(operations)
                 .map(x -> x.calculateItem())
-                .reduce(0, accumulator);
+                .reduce(0, this::aggregateTotal);
     }
 
     protected abstract int aggregateTotal(int total, int subtotal);
