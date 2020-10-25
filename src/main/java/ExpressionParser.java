@@ -3,11 +3,11 @@ import java.io.IOException;
 public class ExpressionParser {
     private final ExpressionReader expressionReader;
 
-    public ExpressionParser(ExpressionReader expressionReader) {
+    public ExpressionParser(ExpressionReader expressionReader, BinaryOperator operator) {
         this.expressionReader = expressionReader;
     }
 
-    int[][] parseExpressions() throws IOException {
+    BinaryOperator[] parseExpressions() throws IOException {
         String data = expressionReader.readData();
         String[] lines = data.split("\n");
         int[][] operations = new int[lines.length - 1][];
