@@ -9,13 +9,6 @@ public class SubtractionProgram extends CalculatorProgram {
     }
 
     @Override
-    protected int calculateItem(BinaryExpression operation) {
-        return super.calculateItem(operation);
-
-//        return operation.left - operation.right;
-    }
-
-    @Override
     protected String formatItem(BinaryExpression operation) {
         return operation.left + " - " + operation.right;
     }
