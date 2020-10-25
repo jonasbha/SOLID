@@ -2,16 +2,18 @@ import java.util.Objects;
 
 public class BinaryExpression {
     public final int left;
+    private final char operator;
     public final int right;
 
-    public BinaryExpression(int left, int right) {
+    public BinaryExpression(int left, char operator, int right) {
         this.left = left;
+        this.operator = operator;
         this.right = right;
     }
 
     @Override
     public String toString() {
-        return this.left + " (op) " + this.right;
+        return this.left + " " + this.operator + " " + this.right;
     }
 
     @Override
@@ -20,11 +22,12 @@ public class BinaryExpression {
         if (!(o instanceof BinaryExpression)) return false;
         BinaryExpression that = (BinaryExpression) o;
         return left == that.left &&
-                right == that.right;
+                right == that.right &&
+                operator == that.operator;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(left, right);
+        return Objects.hash(left, right, operator);
     }
 }

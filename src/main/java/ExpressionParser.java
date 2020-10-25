@@ -1,5 +1,5 @@
 public class ExpressionParser {
-    public ExpressionParser() {
+    public ExpressionParser(char operator) {
     }
 
     BinaryExpression[] parseOperations(String data) {
@@ -20,7 +20,7 @@ public class ExpressionParser {
             int x = Integer.valueOf(columns[0]);
             int y = Integer.valueOf(columns[1]);
 
-            operations[i - 1] = new BinaryExpression(x, y);
+            operations[i - 1] = new BinaryExpression(x, '+', y);
         }
         return operations;
     }
