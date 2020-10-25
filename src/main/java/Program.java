@@ -2,14 +2,20 @@ import java.io.*;
 
 public class Program {
     public static void main(String[] args) throws IOException {
-        ExpressionReader reader = new ExpressionReader();
         ExpressionParser parser = new ExpressionParser();
+        ExpressionReader reader = new ExpressionReader();
         CalculatorProgram program =
-            args.length > 0 && "sub".equals(args[0])
+            shouldUseSubtraction(args)
             ? new SubtractionProgram(reader, parser)
             : new CalculatorProgram(reader, parser);
+
         StringBuilder resultBuilder = program.readParseCalculateAndFormat();
 
-        System.out.println(resultBuilder.toString());
+        System.out.print(resultBuilder.toString());
     }
+
+    private static boolean shouldUseSubtraction(String[] args) {
+        return args.length > 0 && "sub".equals(args[0]);
+    }
+
 }
