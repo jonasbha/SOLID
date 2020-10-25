@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.function.BinaryOperator;
 
-public class AggregateExpression {
+public abstract class AggregateExpression {
     int total;
 
     public AggregateExpression() {
@@ -13,5 +13,5 @@ public class AggregateExpression {
                 .reduce(0, accumulator);
     }
 
-
+    protected abstract int aggregateTotal(int total, int subtotal);
 }

@@ -4,15 +4,10 @@ public class Program {
     public static void main(String[] args) throws IOException {
         ExpressionReader reader = new ExpressionReader();
 
-        ExpressionParser parser =
-            shouldUseSubtraction(args)
-            ? new ExpressionParser('-')
-            : new ExpressionParser('+');
-
         CalculatorProgram program =
             shouldUseSubtraction(args)
-            ? new SubtractionProgram(reader, parser)
-            : new CalculatorProgram(reader, parser, new AggregateExpression());
+            ? new SubtractionProgram(reader, new ExpressionParser('-'))
+            : new CalculatorProgram(reader, new ExpressionParser('+'), new AdditiveTotal());
 
         StringBuilder resultBuilder = program.readParseCalculateAndFormat();
 

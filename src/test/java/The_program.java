@@ -15,7 +15,7 @@ public class The_program {
             "1205 + 795 = 2000\n" +
             "Total: 2020\n";
         ExpressionParser parser = new ExpressionParser('+');
-        String actual = new CalculatorProgram(new ExpressionReader(), parser, new AggregateExpression())
+        String actual = new CalculatorProgram(new ExpressionReader(), parser, new AdditiveTotal())
             .readParseCalculateAndFormat()
             .toString();
         assertEquals(expected, actual);
