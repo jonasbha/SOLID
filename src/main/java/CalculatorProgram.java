@@ -30,10 +30,6 @@ public class CalculatorProgram {
         return total + subtotal;
     }
 
-    protected int calculateItem(int[] operation) {
-        return operation[0] + operation[1];
-    }
-
     final StringBuilder formatReport() {
         StringBuilder resultBuilder = new StringBuilder();
         for (int i = 0; i < operations.length; i++) {
