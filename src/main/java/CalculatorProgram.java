@@ -24,7 +24,7 @@ public class CalculatorProgram {
     StringBuilder formatReport() {
         StringBuilder resultBuilder = new StringBuilder();
         for (int i = 0; i < operations.length; i++) {
-            resultBuilder.append(formatItem(operations[i]));
+            resultBuilder.append(operations[i].toString());
             resultBuilder.append(" = " + subtotals[i] + "\n");
         }
         resultBuilder.append("Total: " + total + "\n");
@@ -38,10 +38,6 @@ public class CalculatorProgram {
             subtotals[i] = operations[i].calculateItem();
             total = aggregateTotal(total, subtotals[i]);
         }
-    }
-
-    protected String formatItem(BinaryExpression operation) {
-        return operation.left + " + " + operation.right;
     }
 
     protected int aggregateTotal(int total, int subtotal) {
