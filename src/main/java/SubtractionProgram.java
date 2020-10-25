@@ -9,12 +9,12 @@ public class SubtractionProgram extends CalculatorProgram {
     }
 
     @Override
-    protected int calculateItem(int[] operation) {
-        return operation[0] - operation[1];
+    protected int calculateItem(BinaryExpression operation) {
+        return operation.left - operation.right;
     }
 
     @Override
-    protected String formatItem(int[] operation) {
-        return operation[0] + " - " + operation[1];
+    protected String formatItem(BinaryExpression operation) {
+        return operation.left + " - " + operation.right;
     }
 }

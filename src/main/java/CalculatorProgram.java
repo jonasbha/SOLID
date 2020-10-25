@@ -5,7 +5,7 @@ public class CalculatorProgram {
     private final ExpressionReader expressionReader;
     private final ExpressionParser expressionParser;
     private int[] subtotals;
-    private int[][] operations;
+    private BinaryExpression[] operations;
     private int total;
 
     public CalculatorProgram(ExpressionReader expressionReader, ExpressionParser expressionParser) {
@@ -40,15 +40,15 @@ public class CalculatorProgram {
         }
     }
 
-    protected String formatItem(int[] operation) {
-        return operation[0] + " + " + operation[1];
+    protected String formatItem(BinaryExpression operation) {
+        return operation.left + " + " + operation.right;
     }
 
     protected int aggregateTotal(int total, int subtotal) {
         return total + subtotal;
     }
 
-    protected int calculateItem(int[] operation) {
-        return operation[0] + operation[1];
+    protected int calculateItem(BinaryExpression operation) {
+        return operation.left + operation.right;
     }
 }

@@ -2,11 +2,11 @@ public class ExpressionParser {
     public ExpressionParser() {
     }
 
-    int[][] parseOperations(String data) {
+    BinaryExpression[] parseOperations(String data) {
         // Split data at unix line specifier
         String[] lines = data.split("\n");
 
-        int[][] operations = new int[lines.length - 1][];
+        BinaryExpression[] operations = new BinaryExpression[lines.length - 1];
 
         // Iterate lines
         for (int i = 0; i < lines.length; i++) {
@@ -20,7 +20,7 @@ public class ExpressionParser {
             int x = Integer.valueOf(columns[0]);
             int y = Integer.valueOf(columns[1]);
 
-            operations[i - 1] = new int[]{x, y};
+            operations[i - 1] = new BinaryExpression(x, y);
         }
         return operations;
     }
