@@ -10,7 +10,9 @@ public class SubtractionProgram extends CalculatorProgram {
 
     @Override
     protected int calculateItem(BinaryExpression operation) {
-        return operation.left - operation.right;
+        return super.calculateItem(operation);
+
+//        return operation.left - operation.right;
     }
 
     @Override
