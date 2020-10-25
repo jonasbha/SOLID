@@ -1,13 +1,17 @@
+import java.io.IOException;
+
 public class ExpressionParser {
     private final char operator;
+    private final String input;
 
-    public ExpressionParser(char operator) {
+    public ExpressionParser(char operator, ExpressionReader reader) throws IOException {
         this.operator = operator;
+        this.input = reader.readData();
     }
 
-    BinaryExpression[] parseOperations(String data) {
+    BinaryExpression[] parseOperations() {
         // Split data at unix line specifier
-        String[] lines = data.split("\n");
+        String[] lines = input.split("\n");
 
         BinaryExpression[] operations = new BinaryExpression[lines.length - 1];
 

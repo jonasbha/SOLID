@@ -15,8 +15,7 @@ public class The_program {
             "1205 + 795 = 2000\n" +
             "Total: 2020\n";
         String actual = new CalculatorProgram(
-                new ExpressionReader(),
-                new ExpressionParser('+'),
+                new ExpressionParser('+', new FileSystemExpressionReader()),
                 new AdditiveTotal(),
                 new AsciiFormatter()
             )
@@ -34,8 +33,7 @@ public class The_program {
             "1205 - 795 = 410\n" +
             "Total: -404\n";
         String actual = new CalculatorProgram(
-                new ExpressionReader(),
-                new ExpressionParser('-'),
+                new ExpressionParser('-', new FileSystemExpressionReader()),
                 new SubtractiveTotal(),
                 new AsciiFormatter()
             )
