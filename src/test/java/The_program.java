@@ -14,8 +14,12 @@ public class The_program {
             "5 + 10 = 15\n" +
             "1205 + 795 = 2000\n" +
             "Total: 2020\n";
-        ExpressionParser parser = new ExpressionParser('+');
-        String actual = new CalculatorProgram(new ExpressionReader(), parser, new AdditiveTotal())
+        String actual = new CalculatorProgram(
+                new ExpressionReader(),
+                new ExpressionParser('+'),
+                new AdditiveTotal(),
+                new AsciiFormatter()
+            )
             .readParseCalculateAndFormat()
             .toString();
         assertEquals(expected, actual);
@@ -29,8 +33,12 @@ public class The_program {
             "5 - 10 = -5\n" +
             "1205 - 795 = 410\n" +
             "Total: -404\n";
-        ExpressionParser parser = new ExpressionParser('-');
-        String actual = new CalculatorProgram(new ExpressionReader(), parser, new SubtractiveTotal())
+        String actual = new CalculatorProgram(
+                new ExpressionReader(),
+                new ExpressionParser('-'),
+                new SubtractiveTotal(),
+                new AsciiFormatter()
+            )
             .readParseCalculateAndFormat()
             .toString();
         assertEquals(expected, actual.toString());

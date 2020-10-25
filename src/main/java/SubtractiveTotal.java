@@ -1,4 +1,4 @@
-public class SubtractiveTotal extends AggregateExpression {
+public class SubtractiveTotal extends Aggregation {
     @Override
     protected int aggregateTotal(int total, int subtotal) {
         return total - subtotal;

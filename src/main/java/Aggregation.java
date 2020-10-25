@@ -1,11 +1,11 @@
 import java.util.Arrays;
 import java.util.function.BinaryOperator;
 
-public abstract class AggregateExpression {
+public abstract class Aggregation {
     int total;
-    private BinaryExpression[] operations;
+    public BinaryExpression[] operations;
 
-    public AggregateExpression() {
+    public Aggregation() {
     }
 
     final void calculate(BinaryExpression[] operations) {

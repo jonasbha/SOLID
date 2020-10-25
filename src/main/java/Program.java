@@ -3,11 +3,12 @@ import java.io.*;
 public class Program {
     public static void main(String[] args) throws IOException {
         ExpressionReader reader = new ExpressionReader();
+        AsciiFormatter formatter = new AsciiFormatter();
 
         CalculatorProgram program =
             shouldUseSubtraction(args)
-            ? new CalculatorProgram(reader, new ExpressionParser('-'), new SubtractiveTotal())
-            : new CalculatorProgram(reader, new ExpressionParser('+'), new AdditiveTotal());
+            ? new CalculatorProgram(reader, new ExpressionParser('-'), new SubtractiveTotal(), formatter)
+            : new CalculatorProgram(reader, new ExpressionParser('+'), new AdditiveTotal(), formatter);
 
         StringBuilder resultBuilder = program.readParseCalculateAndFormat();
 

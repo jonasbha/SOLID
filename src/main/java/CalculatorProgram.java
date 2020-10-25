@@ -6,13 +6,15 @@ public class CalculatorProgram {
 
     private final ExpressionReader expressionReader;
     private final ExpressionParser expressionParser;
-    private final AggregateExpression aggregateExpression;
+    private final Aggregation aggregateExpression;
+    private final AsciiFormatter formatter;
     private BinaryExpression[] operations;
 
-    public CalculatorProgram(ExpressionReader expressionReader, ExpressionParser expressionParser, AggregateExpression aggregateExpression) {
+    public CalculatorProgram(ExpressionReader expressionReader, ExpressionParser expressionParser, Aggregation aggregateExpression, AsciiFormatter formatter) {
         this.expressionReader = expressionReader;
         this.expressionParser = expressionParser;
         this.aggregateExpression = aggregateExpression;
+        this.formatter = formatter;
     }
 
     public StringBuilder readParseCalculateAndFormat() throws IOException {
@@ -20,16 +22,6 @@ public class CalculatorProgram {
         operations = expressionParser.parseOperations(data);
 
         aggregateExpression.calculate(operations);
-        return formatReport();
-    }
-
-    StringBuilder formatReport() {
-        StringBuilder resultBuilder = new StringBuilder();
-        for (int i = 0; i < operations.length; i++) {
-            resultBuilder.append(operations[i].toString());
-            resultBuilder.append(" = " + operations[i].calculateItem() + "\n");
-        }
-        resultBuilder.append("Total: " + aggregateExpression.total + "\n");
-        return resultBuilder;
+        return formatter.formatReport(aggregateExpression);
     }
 }
