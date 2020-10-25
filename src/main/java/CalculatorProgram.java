@@ -1,4 +1,8 @@
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.function.BinaryOperator;
+
+import static java.util.Arrays.stream;
 
 public class CalculatorProgram {
 
@@ -31,10 +35,9 @@ public class CalculatorProgram {
     }
 
     final void calculate() {
-        total = 0;
-        for (int i = 0; i < operations.length; i++) {
-            total = aggregateTotal(total, operations[i].calculateItem());
-        }
+        total = stream(operations)
+                .map(x -> x.calculateItem())
+                .reduce(0, this::aggregateTotal);
     }
 
     protected int aggregateTotal(int total, int subtotal) {
