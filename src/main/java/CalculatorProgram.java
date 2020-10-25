@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.function.BinaryOperator;
 
 import static java.util.Arrays.stream;
@@ -8,8 +7,8 @@ public class CalculatorProgram {
 
     private final ExpressionReader expressionReader;
     private final ExpressionParser expressionParser;
+    private final AggregateExpression aggregateExpression = new AggregateExpression();
     private BinaryExpression[] operations;
-    private int total;
 
     public CalculatorProgram(ExpressionReader expressionReader, ExpressionParser expressionParser) {
         this.expressionReader = expressionReader;
@@ -20,7 +19,7 @@ public class CalculatorProgram {
         String data = expressionReader.readData();
         operations = expressionParser.parseOperations(data);
 
-        calculate();
+        aggregateExpression.calculate(this::aggregateTotal, operations);
         return formatReport();
     }
 
@@ -30,14 +29,8 @@ public class CalculatorProgram {
             resultBuilder.append(operations[i].toString());
             resultBuilder.append(" = " + operations[i].calculateItem() + "\n");
         }
-        resultBuilder.append("Total: " + total + "\n");
+        resultBuilder.append("Total: " + aggregateExpression.total + "\n");
         return resultBuilder;
-    }
-
-    final void calculate() {
-        total = stream(operations)
-                .map(x -> x.calculateItem())
-                .reduce(0, this::aggregateTotal);
     }
 
     protected int aggregateTotal(int total, int subtotal) {
