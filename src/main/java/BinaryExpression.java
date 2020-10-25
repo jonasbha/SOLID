@@ -6,4 +6,9 @@ public class BinaryExpression {
         this.left = left;
         this.right = right;
     }
+
+    @Override
+    public String toString() {
+        return this.left + " (op) " + this.right;
+    }
 }
