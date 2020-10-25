@@ -1,0 +1,25 @@
+@startuml
+
+hide empty members
+
+class BinaryExpression {
+    + int left
+    + int right
+    + Operation operation
+    + int calculate()
+}
+
+abstract class BinaryOperation {
+    + char symbol
+    + int calculate(int x, int y)
+}
+
+class Addition {
+}
+
+class Subtraction {
+}
+
+BinaryExpression -> BinaryOperation
+
+@enduml
