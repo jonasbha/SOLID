@@ -33,14 +33,11 @@ public class CalculatorProgram {
     final StringBuilder formatReport() {
         StringBuilder resultBuilder = new StringBuilder();
         for (int i = 0; i < operations.length; i++) {
-            resultBuilder.append(formatItem(operations[i]));
+            resultBuilder.append(operations[i].toString());
             resultBuilder.append(" = " + (subtotals[i]) + "\n");
         }
         resultBuilder.append("Total: " + total + "\n");
         return resultBuilder;
     }
 
-    protected String formatItem(BinaryExpression operation) {
-        return operation.left + " " + operation.operator.symbol + " " + operation.right;
-    }
 }

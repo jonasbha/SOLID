@@ -16,6 +16,11 @@ public class BinaryExpression {
     }
 
     @Override
+    public String toString() {
+        return left + " " + operator.symbol + " " + right;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof BinaryExpression)) return false;

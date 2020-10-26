@@ -7,9 +7,4 @@ public class SubtractionProgram extends CalculatorProgram {
     protected int aggregateTotal(int total, int subtotal) {
         return total - subtotal;
     }
-
-    @Override
-    protected String formatItem(BinaryExpression operation) {
-        return operation.left + " - " + operation.right;
-    }
 }
