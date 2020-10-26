@@ -17,16 +17,16 @@ public class CalculatorProgram {
         operations = expressionParser.parseExpressions();
         aggregation = new Aggregation(aggregationOperator, operations);
         aggregation.calculate();
-        return formatReport();
+        return formatReport(aggregation);
     }
 
-    final StringBuilder formatReport() {
+    final StringBuilder formatReport(Aggregation aggregation) {
         StringBuilder resultBuilder = new StringBuilder();
-        for (int i = 0; i < operations.length; i++) {
-            resultBuilder.append(operations[i].toString());
-            resultBuilder.append(" = " + (operations[i].calculate()) + "\n");
+        for (int i = 0; i < aggregation.operations.length; i++) {
+            resultBuilder.append(aggregation.operations[i].toString());
+            resultBuilder.append(" = " + (aggregation.operations[i].calculate()) + "\n");
         }
-        resultBuilder.append("Total: " + total + "\n");
+        resultBuilder.append("Total: " + aggregation.total + "\n");
         return resultBuilder;
     }
 

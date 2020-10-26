@@ -1,7 +1,7 @@
 public class Aggregation {
     public BinaryOperator aggregationOperator;
     public final BinaryExpression[] operations;
-    private int total;
+    public int total;
 
     public Aggregation(BinaryOperator aggregationOperator, BinaryExpression[] operations) {
         this.aggregationOperator = aggregationOperator;
