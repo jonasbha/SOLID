@@ -1,15 +1,17 @@
 public class Aggregation {
-    BinaryOperator aggregationOperator;
+    public BinaryOperator aggregationOperator;
+    public final BinaryExpression[] operations;
+    private int total;
 
-    public Aggregation(BinaryOperator aggregationOperator) {
+    public Aggregation(BinaryOperator aggregationOperator, BinaryExpression[] operations) {
         this.aggregationOperator = aggregationOperator;
+        this.operations = operations;
     }
 
-    final int calculate(BinaryExpression[] operations) {
-        int total = 0;
+    final void calculate() {
+        total = 0;
         for (int i = 0; i < operations.length; i++) {
-            total = this.aggregationOperator.calculate(total, operations[i].calculate());
+            total = aggregationOperator.calculate(total, operations[i].calculate());
         }
-        return total;
     }
 }

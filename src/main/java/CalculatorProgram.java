@@ -4,6 +4,7 @@ public class CalculatorProgram {
 
     private final ExpressionParser expressionParser;
     private final BinaryOperator aggregationOperator;
+    private Aggregation aggregation;
     private int total;
     private BinaryExpression[] operations;
 
@@ -14,7 +15,8 @@ public class CalculatorProgram {
 
     public StringBuilder readParseCalculateAndFormat() throws IOException {
         operations = expressionParser.parseExpressions();
-        total = new Aggregation(aggregationOperator).calculate(operations);
+        aggregation = new Aggregation(aggregationOperator, operations);
+        aggregation.calculate();
         return formatReport();
     }
 
