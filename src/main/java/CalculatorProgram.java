@@ -14,16 +14,8 @@ public class CalculatorProgram {
 
     public StringBuilder readParseCalculateAndFormat() throws IOException {
         operations = expressionParser.parseExpressions();
-        total = calculate(new Aggregation(aggregationOperator), operations);
+        total = new Aggregation(aggregationOperator).calculate(operations);
         return formatReport();
-    }
-
-    private final int calculate(Aggregation aggregation, BinaryExpression[] operations) {
-        int total = 0;
-        for (int i = 0; i < operations.length; i++) {
-            total = aggregationOperator.calculate(total, operations[i].calculate());
-        }
-        return total;
     }
 
     protected int aggregateTotal(int total, int subtotal) {
