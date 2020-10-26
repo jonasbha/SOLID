@@ -1,0 +1,52 @@
+@startuml
+hide empty members
+
+class ExpressionReader {
+    + String readData() throws IOException
+}
+
+class ExpressionParser {
+    + BinaryExpression[] parseOperations(String data) throws IOException
+}
+
+class CalculatorProgram {
+    + StringBuilder readParseCalculateAndFormat() throws IOException
+    - Aggregation calculate()
+}
+
+class BinaryExpression {
+    + int left
+    + int right
+    int calculate()
+    String toString()
+}
+
+abstract class BinaryOperator {
+    + char symbol
+    + int calculate(int left, int right)
+}
+
+class Aggregation {
+    + int total
+    + void calculate()
+}
+
+class AsciiFormatter {
+    + StringBuilder formatReport(Aggregation aggregation)
+}
+
+CalculatorProgram ..> ExpressionParser
+ExpressionParser ..> ExpressionReader
+
+BinaryExpression -> BinaryOperator
+
+ExpressionParser --> BinaryExpression : creates
+
+Aggregation "1" *-- "*" BinaryExpression : expressions
+Aggregation *-- BinaryOperator : aggregateOperator
+
+CalculatorProgram --> Aggregation
+CalculatorProgram ..> AsciiFormatter
+AsciiFormatter --> Aggregation
+
+@enduml
