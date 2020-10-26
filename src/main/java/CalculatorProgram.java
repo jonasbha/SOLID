@@ -18,10 +18,6 @@ public class CalculatorProgram {
         return formatReport();
     }
 
-    protected int aggregateTotal(int total, int subtotal) {
-        return total + subtotal;
-    }
-
     final StringBuilder formatReport() {
         StringBuilder resultBuilder = new StringBuilder();
         for (int i = 0; i < operations.length; i++) {

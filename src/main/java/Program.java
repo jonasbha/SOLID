@@ -4,7 +4,7 @@ public class Program {
     public static void main(String[] args) throws IOException {
         CalculatorProgram program =
             shouldUseSubtraction(args)
-            ? new SubtractionProgram(new ExpressionParser(new ExpressionReader(), new Addition()), new Addition())
+            ? new CalculatorProgram(new ExpressionParser(new ExpressionReader(), new Subtraction()), new Subtraction())
             : new CalculatorProgram(new ExpressionParser(new ExpressionReader(), new Addition()), new Addition());
 
         StringBuilder resultBuilder = program.readParseCalculateAndFormat();
