@@ -1,6 +1,6 @@
 public class SubtractionProgram extends CalculatorProgram {
-    public SubtractionProgram(ExpressionParser expressionParser) {
-        super(expressionParser);
+    public SubtractionProgram(ExpressionParser expressionParser, BinaryOperator operator) {
+        super(expressionParser, operator);
     }
 
     @Override

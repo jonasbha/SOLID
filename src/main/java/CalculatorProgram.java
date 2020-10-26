@@ -3,24 +3,27 @@ import java.io.IOException;
 public class CalculatorProgram {
 
     private final ExpressionParser expressionParser;
+    private final BinaryOperator aggregationOperator;
     private int total;
     private BinaryExpression[] operations;
 
-    public CalculatorProgram(ExpressionParser expressionParser) {
+    public CalculatorProgram(ExpressionParser expressionParser, BinaryOperator aggregationOperator) {
         this.expressionParser = expressionParser;
+        this.aggregationOperator = aggregationOperator;
     }
 
     public StringBuilder readParseCalculateAndFormat() throws IOException {
         operations = expressionParser.parseExpressions();
-        calculate();
+        total = calculate(new Aggregation(aggregationOperator), operations);
         return formatReport();
     }
 
-    private final void calculate() {
-        total = 0;
+    private final int calculate(Aggregation aggregation, BinaryExpression[] operations) {
+        int total = 0;
         for (int i = 0; i < operations.length; i++) {
-            total = aggregateTotal(total, operations[i].calculate());
+            total = aggregationOperator.calculate(total, operations[i].calculate());
         }
+        return total;
     }
 
     protected int aggregateTotal(int total, int subtotal) {
