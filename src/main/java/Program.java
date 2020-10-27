@@ -5,6 +5,13 @@ import java.io.*;
 
 public class Program {
     public static void main(String[] args) throws IOException {
+        MutablePicoContainer container = configureApplication(args);
+        CalculatorProgram program = container.getComponent(CalculatorProgram.class);
+        StringBuilder resultBuilder = program.readParseCalculateAndFormat();
+        System.out.print(resultBuilder.toString());
+    }
+
+    private static MutablePicoContainer configureApplication(String[] args) {
         MutablePicoContainer container = new DefaultPicoContainer();
 
         container.addComponent(ExpressionReader.class);
@@ -17,13 +24,7 @@ public class Program {
                 ? Subtraction.class
                 : Addition.class
         );
-
-
-        CalculatorProgram program = container.getComponent(CalculatorProgram.class);
-
-        StringBuilder resultBuilder = program.readParseCalculateAndFormat();
-
-        System.out.print(resultBuilder.toString());
+        return container;
     }
 
     private static boolean shouldUseSubtraction(String[] args) {
