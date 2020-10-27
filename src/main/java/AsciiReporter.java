@@ -1,8 +1,9 @@
-public class AsciiReporter {
+public class AsciiReporter implements Reporter {
     public AsciiReporter() {
     }
 
-    final StringBuilder formatReport(Aggregation aggregation) {
+    @Override
+    public final StringBuilder formatReport(Aggregation aggregation) {
         StringBuilder resultBuilder = new StringBuilder();
         for (int i = 0; i < aggregation.operations.length; i++) {
             resultBuilder.append(aggregation.operations[i].toString());

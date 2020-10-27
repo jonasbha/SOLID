@@ -4,11 +4,12 @@ public class CalculatorProgram {
 
     private final ExpressionParser expressionParser;
     private final BinaryOperator aggregationOperator;
-    private final AsciiReporter asciiReporter = new AsciiReporter();
+    private final Reporter asciiReporter;
 
-    public CalculatorProgram(ExpressionParser expressionParser, BinaryOperator aggregationOperator) {
+    public CalculatorProgram(ExpressionParser expressionParser, BinaryOperator aggregationOperator, Reporter reporter) {
         this.expressionParser = expressionParser;
         this.aggregationOperator = aggregationOperator;
+        asciiReporter = reporter;
     }
 
     public StringBuilder readParseCalculateAndFormat() throws IOException {

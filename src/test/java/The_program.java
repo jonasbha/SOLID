@@ -18,8 +18,8 @@ public class The_program {
                     new ExpressionReader(), 
                     new Addition()
                 ),
-                new Addition()
-            )
+                new Addition(), new AsciiReporter()
+        )
             .readParseCalculateAndFormat()
             .toString();
         assertEquals(expected, actual);
@@ -38,8 +38,8 @@ public class The_program {
                     new ExpressionReader(),
                     new Subtraction()
                 ),
-                new Subtraction()
-            )
+                new Subtraction(), new AsciiReporter()
+        )
             .readParseCalculateAndFormat()
             .toString();
         assertEquals(expected, actual);
