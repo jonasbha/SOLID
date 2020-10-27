@@ -1,3 +1,4 @@
+import org.picocontainer.Characteristics;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.MutablePicoContainer;
 
@@ -15,20 +16,26 @@ public class Program {
         MutablePicoContainer container = new DefaultPicoContainer();
 
         container.addComponent(ExpressionReader.class);
-        container.addComponent(ExpressionParser.class);
-        container.addComponent(CalculatorProgram.class);
+        container.as(Characteristics.USE_NAMES).addComponent(ExpressionParser.class);
+        container.addComponent(Reporter.class, AsciiReporter.class);
+        container.as(Characteristics.USE_NAMES).addComponent(CalculatorProgram.class);
 
-        container.addComponent(
-            BinaryOperator.class,
-            shouldUseSubtraction(args)
+        container.addComponent("operator",
+            shouldUseSubtraction(args, 0)
                 ? Subtraction.class
                 : Addition.class
         );
+        container.addComponent("aggregationOperator",
+            shouldUseSubtraction(args, 1)
+                ? Subtraction.class
+                : Addition.class
+        );
+
         return container;
     }
 
-    private static boolean shouldUseSubtraction(String[] args) {
-        return args.length > 0 && "sub".equals(args[0]);
+    private static boolean shouldUseSubtraction(String[] args, int index) {
+        return args.length > index && "sub".equals(args[index]);
     }
 
 }
