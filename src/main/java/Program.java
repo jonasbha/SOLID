@@ -1,11 +1,25 @@
+import org.picocontainer.DefaultPicoContainer;
+import org.picocontainer.MutablePicoContainer;
+
 import java.io.*;
 
 public class Program {
     public static void main(String[] args) throws IOException {
-        CalculatorProgram program =
+        MutablePicoContainer container = new DefaultPicoContainer();
+
+        container.addComponent(ExpressionReader.class);
+        container.addComponent(ExpressionParser.class);
+        container.addComponent(CalculatorProgram.class);
+
+        container.addComponent(
+            BinaryOperator.class,
             shouldUseSubtraction(args)
-            ? new CalculatorProgram(new ExpressionParser(new ExpressionReader(), new Subtraction()), new Subtraction())
-            : new CalculatorProgram(new ExpressionParser(new ExpressionReader(), new Addition()), new Addition());
+                ? Subtraction.class
+                : Addition.class
+        );
+
+
+        CalculatorProgram program = container.getComponent(CalculatorProgram.class);
 
         StringBuilder resultBuilder = program.readParseCalculateAndFormat();
 
