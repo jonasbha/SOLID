@@ -7,7 +7,7 @@ public class ExpressionReader {
     public ExpressionReader() {
     }
 
-    String readData() throws IOException {
+    public String readData() throws IOException {
         Path path = Paths.get(System.getProperty("user.dir"), "data", "additions.csv");
         byte[] encoded = Files.readAllBytes(path);
         String data = new String(encoded, "UTF-8");
