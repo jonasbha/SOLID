@@ -1,0 +1,47 @@
+@startuml
+
+hide empty members
+
+abstract class Expression {
+    + void calculate()
+}
+
+class AggregateExpression {
+    + int total
+    + void calculate()
+}
+
+class BinaryExpression {
+    + Expression left
+    + Expression right
+    + int calculate()
+}
+
+class LiteralExpression {
+    + int value
+    + int calculate()
+}
+
+abstract class BinaryOperator {
+    + char symbol
+    + int calculate(int x, int y)
+}
+
+class Addition {
+}
+
+class Subtraction {
+}
+
+AggregateExpression -up-|> Expression
+BinaryExpression -up-|> Expression
+LiteralExpression -up-|> Expression
+
+AggregateExpression "1" *-- "*" BinaryExpression : expressions
+AggregateExpression *-- BinaryOperator : aggregateOperator
+
+BinaryExpression *- BinaryOperator : operator
+Addition -up-|> BinaryOperator
+Subtraction -up-|> BinaryOperator
+
+@enduml

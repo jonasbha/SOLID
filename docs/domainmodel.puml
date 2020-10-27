@@ -2,10 +2,14 @@
 
 hide empty members
 
+class Aggregation {
+    + int total
+    + void calculate()
+}
+
 class BinaryExpression {
     + int left
     + int right
-    + Operation operation
     + int calculate()
 }
 
@@ -20,6 +24,11 @@ class Addition {
 class Subtraction {
 }
 
-BinaryExpression -> BinaryOperator
+Aggregation "1" *-- "*" BinaryExpression : expressions
+Aggregation *-- BinaryOperator : aggregateOperator
+
+BinaryExpression *- BinaryOperator : operator
+Addition -up-|> BinaryOperator
+Subtraction -up-|> BinaryOperator
 
 @enduml

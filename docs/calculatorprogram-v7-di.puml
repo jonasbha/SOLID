@@ -1,0 +1,33 @@
+@startuml
+hide empty members
+
+class ExpressionReader {
+    + String readData() throws IOException
+}
+
+class ExpressionParser {
+    + Expression parseOperations(String data) throws IOException
+}
+
+class CalculationReport {
+    + StringBuilder buildReport() throws IOException
+}
+
+class Expression {
+    + int calculate()
+}
+
+class Formatter {
+    + StringBuilder formatReport(Expression aggregation)
+}
+
+CalculationReport ..> ExpressionParser
+ExpressionParser ..> ExpressionReader
+
+ExpressionParser --> Expression : creates
+
+CalculationReport --> Expression
+CalculationReport ..> Formatter
+Formatter --> Expression
+
+@enduml
