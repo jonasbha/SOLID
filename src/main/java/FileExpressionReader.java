@@ -1,0 +1,17 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+public class FileExpressionReader implements ExpressionReader {
+    public FileExpressionReader() {
+    }
+
+    @Override
+    public String readData() throws IOException {
+        Path path = Paths.get(System.getProperty("user.dir"), "data", "additions.csv");
+        byte[] encoded = Files.readAllBytes(path);
+        String data = new String(encoded, "UTF-8");
+        return data;
+    }
+}

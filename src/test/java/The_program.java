@@ -15,11 +15,12 @@ public class The_program {
             "Total: 2020\n";
         String actual = new CalculatorProgram(
                 new ExpressionParser(
-                    new ExpressionReader(), 
+                    new FileExpressionReader(),
+                    new Addition(),
                     new Addition()
                 ),
-                new Addition(), new AsciiReporter()
-        )
+                new AsciiReporter()
+            )
             .readParseCalculateAndFormat()
             .toString();
         assertEquals(expected, actual);
@@ -35,11 +36,12 @@ public class The_program {
             "Total: -404\n";
         String actual = new CalculatorProgram(
                 new ExpressionParser(
-                    new ExpressionReader(),
+                    new FileExpressionReader(),
+                    new Subtraction(),
                     new Subtraction()
                 ),
-                new Subtraction(), new AsciiReporter()
-        )
+                new AsciiReporter()
+            )
             .readParseCalculateAndFormat()
             .toString();
         assertEquals(expected, actual);

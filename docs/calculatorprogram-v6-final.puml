@@ -1,7 +1,7 @@
 @startuml
 hide empty members
 
-class ExpressionReader {
+class FileExpressionReader {
     + String readData() throws IOException
 }
 
@@ -36,7 +36,7 @@ class AsciiFormatter {
 }
 
 CalculatorProgram ..> ExpressionParser
-ExpressionParser ..> ExpressionReader
+ExpressionParser ..> FileExpressionReader
 
 BinaryExpression -> BinaryOperator
 

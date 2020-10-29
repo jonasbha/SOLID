@@ -1,4 +1,4 @@
-public class Aggregation {
+public class Aggregation implements Expression {
     public BinaryOperator aggregationOperator;
     public final BinaryExpression[] operations;
     public int total;
@@ -8,10 +8,12 @@ public class Aggregation {
         this.operations = operations;
     }
 
-    final void calculate() {
+    @Override
+    public final int calculate() {
         total = 0;
         for (int i = 0; i < operations.length; i++) {
             total = aggregationOperator.calculate(total, operations[i].calculate());
         }
+        return total;
     }
 }

@@ -1,7 +1,5 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.IOException;
 
@@ -17,17 +15,17 @@ public class Parsing_expressions_from_CSV {
             new BinaryExpression(1, new Addition(), 1),
             new BinaryExpression(1, new Addition(), 3)
         };
-        ExpressionReader fakeReader = new ExpressionReader() {
+        ExpressionReader fakeReader = new FileExpressionReader() {
             @Override
             public String readData() throws IOException {
                 return input;
             }
         };
 
-        ExpressionParser parser = new ExpressionParser(fakeReader, new Addition());
-        BinaryExpression[] actual = parser.parseExpressions();
+        ExpressionParser parser = new ExpressionParser(fakeReader, new Addition(), new Addition());
+        Aggregation actual = (Aggregation)parser.parseExpressions();
 
-        Assertions.assertArrayEquals(expected, actual);
+        Assertions.assertArrayEquals(expected, actual.operations);
     }
 
 }

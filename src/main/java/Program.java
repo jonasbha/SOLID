@@ -22,7 +22,7 @@ public class Program {
                 .addPreInvocation(Reporter.class, new Reporter() {
                     @Override
                     public StringBuilder formatReport(Aggregation aggregation) {
-                        System.out.println("Formatting report " + aggregation);
+                        System.out.println("Formatting report " + aggregation.total);
                         return null;
                     }
                 });
@@ -31,7 +31,7 @@ public class Program {
     private static MutablePicoContainer configureApplication(String[] args) {
         MutablePicoContainer container = new DefaultPicoContainer(new Intercepting());
 
-        container.addComponent(ExpressionReader.class);
+        container.addComponent(ExpressionReader.class, FileExpressionReader.class);
         container.as(Characteristics.USE_NAMES).addComponent(ExpressionParser.class);
         container.addComponent(Reporter.class, AsciiReporter.class);
         container.as(Characteristics.USE_NAMES).addComponent(CalculatorProgram.class);

@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class BinaryExpression {
+public class BinaryExpression implements Expression {
     public final int left;
     public final BinaryOperator operator;
     public final int right;
